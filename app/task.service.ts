@@ -54,7 +54,7 @@ export class TaskService {
   }
 
   update(task: Task): (Promise<Task>) {
-    let body = 'update=y&id=' + task.id + '&name=' + task.name;
+    let body = 'update=y&id=' + task.id + '&name=' + task.name + '&priority=' + task.priority;
     return this.http
       .post(this.serviceUrl, body, {headers: this.writeHeader})
       .toPromise()

@@ -56,7 +56,7 @@ var TaskService = (function () {
             .catch(this.handleError);
     };
     TaskService.prototype.update = function (task) {
-        var body = 'update=y&id=' + task.id + '&name=' + task.name;
+        var body = 'update=y&id=' + task.id + '&name=' + task.name + '&priority=' + task.priority;
         return this.http
             .post(this.serviceUrl, body, { headers: this.writeHeader })
             .toPromise()

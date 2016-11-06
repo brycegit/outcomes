@@ -20,6 +20,8 @@ export class FormComponent implements OnInit {
 
   submitted = false;
 
+  updating = false;
+
   model = new Task(null, '', 1);
 
   getTasks(): void{
@@ -46,4 +48,17 @@ export class FormComponent implements OnInit {
       });
   }
 
+  save(): void {
+    this.taskService.update(this.model)
+      .then(() => {
+        this.submitted = true;
+        this.getTasks();
+        this.updating = false;
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
+        setTimeout(() => {
+          this.submitted = false;
+        }, 8000);
+      });
+  }
 }

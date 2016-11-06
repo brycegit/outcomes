@@ -17,6 +17,7 @@ var FormComponent = (function () {
         this.priority = [1, 2, 3, 4];
         this.active = true;
         this.submitted = false;
+        this.updating = false;
         this.model = new task_1.Task(null, '', 1);
     }
     FormComponent.prototype.getTasks = function () {
@@ -42,6 +43,20 @@ var FormComponent = (function () {
         this.taskService.create(name, priority)
             .then(function (task) {
             _this.tasks.push(task);
+        });
+    };
+    FormComponent.prototype.save = function () {
+        var _this = this;
+        this.taskService.update(this.model)
+            .then(function () {
+            _this.submitted = true;
+            _this.getTasks();
+            _this.updating = false;
+            _this.active = false;
+            setTimeout(function () { return _this.active = true; }, 0);
+            setTimeout(function () {
+                _this.submitted = false;
+            }, 8000);
         });
     };
     return FormComponent;

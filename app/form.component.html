@@ -1,0 +1,26 @@
+<h1 class="title">Add a Task</h1>
+<form *ngIf="active" #taskForm="ngForm" (ngSubmit)="add(name.value, selectedPriority.value); name.value=''; ngModelName=''">
+  <label for="name">Task Name</label>
+  <input #name="ngModel" required type="text" placeholder="Enter task..."
+  [(ngModel)]="ngModelName" name="name" id="name">
+  <div [hidden]="name.valid || name.pristine"
+     class="invalid">
+    Name is required
+  </div>
+  <br>
+  <label for="priority">Priority</label>
+  <select [(ngModel)]="model.priority" required name="priority" #selectedPriority id="priority">
+    <option *ngFor="let p of priority" [value]="p">{{p}}</option>
+  </select><br>
+  <button [disabled]="!taskForm.form.valid" type="submit">Save</button>
+
+</form>
+
+<div [hidden]="!submitted">
+You submitted: {{model.name}} at priority {{model.priority}}
+</div>
+
+<ul>
+  <li *ngFor="let task of tasks">{{task.name}} | Priority: {{task.priority}}</li>
+  <li style="color: #ddd" *ngIf="ngModelName">{{ngModelName}} | Priority: {{model.priority}}</li>
+</ul>

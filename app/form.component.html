@@ -23,6 +23,7 @@
 <ul>
   <li *ngFor="let task of tasks">{{task.name}} | Priority: {{task.priority}}
           <button (click)="updating=true; model.name=task.name; model.id=task.id; model.priority=task.priority">Edit</button>
+          <button (click)="delete(task)">Delete</button>
   </li>
   <li style="color: #bbb" *ngIf="ngModelName">{{ngModelName}} | Priority: {{model.priority}}</li>
 </ul>

@@ -61,4 +61,12 @@ export class FormComponent implements OnInit {
         }, 8000);
       });
   }
+
+  delete(task: Task): void {
+    this.taskService
+        .delete(task.id)
+        .then(() => {
+          this.tasks = this.tasks.filter(t => t !== task);
+        });
+  }
 }

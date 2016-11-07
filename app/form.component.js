@@ -59,6 +59,14 @@ var FormComponent = (function () {
             }, 8000);
         });
     };
+    FormComponent.prototype.delete = function (task) {
+        var _this = this;
+        this.taskService
+            .delete(task.id)
+            .then(function () {
+            _this.tasks = _this.tasks.filter(function (t) { return t !== task; });
+        });
+    };
     return FormComponent;
 }());
 FormComponent = __decorate([

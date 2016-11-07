@@ -24,7 +24,7 @@
   <li *ngFor="let task of tasks">{{task.name}} | Priority: {{task.priority}}
           <button (click)="updating=true; model.name=task.name; model.id=task.id; model.priority=task.priority">Edit</button>
   </li>
-  <li style="color: #ddd" *ngIf="ngModelName">{{ngModelName}} | Priority: {{model.priority}}</li>
+  <li style="color: #bbb" *ngIf="ngModelName">{{ngModelName}} | Priority: {{model.priority}}</li>
 </ul>
 </div>
 
@@ -32,7 +32,7 @@
   <h1 class="title">Edit a Task</h1>
   <form #taskUpdateForm="ngForm" (ngSubmit)="model.name = name.value; save(); name.value='';">
     <label for="name">Task Name</label>
-    <input [(ngModel)]="model.name" #name="ngModel" required type="text" placeholder="Enter task..."
+    <input [ngModel]="model.name" #name="ngModel" required type="text" placeholder="Enter task..."
      [value]="model.name" name="name" id="name">
     <div [hidden]="name.valid || name.pristine"
        class="invalid">
